@@ -1,0 +1,3 @@
+"""Automated investment valuation and portfolio monitoring tool."""
+
+__version__ = "0.1.0"

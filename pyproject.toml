@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "valuation-tool"
+version = "0.1.0"
+description = "Automated investment valuation and portfolio monitoring tool"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "pydantic-settings>=2.0,<3.0",
+    "typer[all]>=0.9,<1.0",
+    "structlog>=23.0",
+    "tenacity>=8.0,<10.0",
+    "httpx>=0.25,<1.0",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "imagehash>=4.3",
+    "Pillow>=10.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+playwright = ["playwright>=1.40"]
+anthropic = ["anthropic>=0.30"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.0",
+    "respx>=0.20",
+]
+
+[project.scripts]
+valuation-tool = "valuation_tool.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/valuation_tool"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
